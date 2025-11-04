@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://brmxhb3vwm50p"]
+
+[ext_resource type="SpriteFrames" uid="uid://cryh15i15yrym" path="res://Dummy/Assets/dummy_sprite_frames.tres" id="1_tx5ky"]
+
+[node name="Dummy" type="CharacterBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("1_tx5ky")
+animation = &"Attack_back"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]

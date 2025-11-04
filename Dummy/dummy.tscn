@@ -1,11 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://brmxhb3vwm50p"]
+[gd_scene load_steps=3 format=3 uid="uid://brmxhb3vwm50p"]
 
 [ext_resource type="SpriteFrames" uid="uid://cryh15i15yrym" path="res://Dummy/Assets/dummy_sprite_frames.tres" id="1_tx5ky"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tx5ky"]
+radius = 12.0
 
 [node name="Dummy" type="CharacterBody2D"]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("1_tx5ky")
-animation = &"Attack_back"
+animation = &"IDLE_front"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_tx5ky")
+
+[node name="Controllers" type="Node" parent="."]

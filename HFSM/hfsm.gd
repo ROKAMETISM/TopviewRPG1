@@ -1,9 +1,9 @@
-class_name FSM
+class_name HFSM
 extends Node
 
-signal state_updated(new_states : Array[State])
-@export var starting_states:Array[State]
-var _current_states:Array[State]
+signal state_updated(new_states : Array[HState])
+@export var starting_states:Array[HState]
+var _current_states:Array[HState]
 
 func _physics_process(delta: float) -> void:
 	for current_state_element in _current_states:
@@ -21,24 +21,24 @@ func _process(delta: float) -> void:
 		change_state(state_change_data)
 
 func init(parent:Node, controllers:Array[Controller]) -> void:
-	for child : State in get_children():
+	for child : HState in get_children():
 		child.parent = parent
 		child.fsm = self
 		child.controllers = controllers
 	var state_transition_array := []
 	for starting_state_element in starting_states:
-		state_transition_array.append(Transition.new(starting_state_element, Transition.Type.Enter))
+		state_transition_array.append(HTrans.new(starting_state_element, HTrans.Type.Enter))
 	change_state(state_transition_array)
 
 func change_state(data:Array) -> void:
-	for transition:Transition in data:
+	for transition:HTrans in data:
 		match transition.operation_type:
-			Transition.Type.Enter:
+			HTrans.Type.Enter:
 				if _current_states.has(transition.new_state):
 					continue
 				_current_states.append(transition.new_state)
 				transition.new_state.enter()
-			Transition.Type.Exit:
+			HTrans.Type.Exit:
 				if not _current_states.has(transition.new_state):
 					continue
 				_current_states.erase(transition.new_state)

@@ -26,10 +26,10 @@ func is_state_active(state:HState)->bool:
 	return fsm._current_states.has(state)
 func get_state_name()->String:
 	return "BaseHStateName"
-func _exit_transition(output:Array, exit_state:HState)->void:
+func _exit(output:Array, exit_state:HState)->void:
 	output.append(HTrans.new(exit_state, HTrans.Type.Exit))
-func _enter_transition(output:Array, exit_state:HState)->void:
+func _enter(output:Array, exit_state:HState)->void:
 	output.append(HTrans.new(exit_state, HTrans.Type.Enter))
-func _set_single_state_transition(output:Array, new_state:HState)->void:
+func _change(output:Array, new_state:HState)->void:
 	output.append(HTrans.new(self, HTrans.Type.Exit))
 	output.append(HTrans.new(new_state, HTrans.Type.Enter))

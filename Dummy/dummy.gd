@@ -23,6 +23,8 @@ func _interact()->void:
 
 func _find_interactable():
 	if interaction_area.interactables.size() == 0:
+		if _object_to_interact and _object_to_interact.has_method("unhighlight"):
+			_object_to_interact.unhighlight()
 		_object_to_interact = null
 		return
 	var min_dist := 0.0
@@ -33,6 +35,10 @@ func _find_interactable():
 		if closest == null or dist < min_dist:
 			closest = object
 			min_dist = dist
+	if closest == _object_to_interact:
+		return
+	if _object_to_interact and _object_to_interact.has_method("unhighlight"):
+		_object_to_interact.unhighlight()
 	_object_to_interact = closest
 	
 

@@ -25,3 +25,6 @@ func interact() -> void:
 
 func highlight()->void:
 	modulate.a = 0.3
+
+func unhighlight()->void:
+	modulate.a = 1.0

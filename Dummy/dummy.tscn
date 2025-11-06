@@ -1,10 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://brmxhb3vwm50p"]
+[gd_scene load_steps=6 format=3 uid="uid://brmxhb3vwm50p"]
 
 [ext_resource type="Script" uid="uid://d3meqvxkjjt4w" path="res://Dummy/dummy.gd" id="1_nynhp"]
 [ext_resource type="SpriteFrames" uid="uid://cryh15i15yrym" path="res://Dummy/Assets/dummy_sprite_frames.tres" id="1_tx5ky"]
+[ext_resource type="Script" uid="uid://fs3y0r502pw3" path="res://Dummy/interaction_area.gd" id="3_d42o3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tx5ky"]
 radius = 12.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vqisv"]
+radius = 32.0
 
 [node name="Dummy" type="CharacterBody2D"]
 script = ExtResource("1_nynhp")
@@ -17,3 +21,12 @@ animation = &"IDLE_front"
 shape = SubResource("CircleShape2D_tx5ky")
 
 [node name="Controllers" type="Node" parent="."]
+
+[node name="InteractionArea" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 128
+script = ExtResource("3_d42o3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+shape = SubResource("CircleShape2D_vqisv")

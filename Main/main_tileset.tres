@@ -1,0 +1,19 @@
+[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://bjef2iw7cdxq3"]
+
+[ext_resource type="Texture2D" uid="uid://dvtd0cooo7sxb" path="res://Cute_Fantasy_Free/Tiles/Grass_Middle.png" id="1_imj4g"]
+[ext_resource type="Texture2D" uid="uid://dhjkelx3opv3o" path="res://Cute_Fantasy_Free/Tiles/Path_Middle.png" id="2_yw8cp"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3heap"]
+texture = ExtResource("1_imj4g")
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ahjwd"]
+texture = ExtResource("2_yw8cp")
+0:0/0 = 0
+
+[resource]
+terrain_set_0/mode = 0
+custom_data_layer_0/name = ""
+custom_data_layer_0/type = 0
+sources/0 = SubResource("TileSetAtlasSource_3heap")
+sources/1 = SubResource("TileSetAtlasSource_ahjwd")

@@ -8,7 +8,7 @@ const SPRITE_CLOSED := preload("uid://b65j7wlxi8o7a")
 var _is_open := false
 
 
-func interact() -> void:
+func interact(_source:Node2D) -> void:
 	_is_open = not _is_open
 	if _is_open:
 		sprite.texture = SPRITE_OPEN

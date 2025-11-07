@@ -1,8 +1,11 @@
 class_name Dummy extends CharacterBody2D
 
 @onready var interaction_area : Area2D = %InteractionArea
+@onready var inventory : Inventory = $Inventory
+var inventory_vis : GridContainer = null
 
 var _object_to_interact : Node2D = null
+
 
 func _physics_process(delta: float) -> void:
 	var move_direction : Vector2 = Input.get_vector("move_left", "move_right", "move_up", "move_down")
@@ -13,13 +16,15 @@ func _physics_process(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("interact"):
 		_interact()
+	if Input.is_action_just_pressed("open_inventory"):
+		_visualize_inventory()
 	
 
 func _interact()->void:
 	if not _object_to_interact:
 		return
 	if _object_to_interact.has_method("interact"):
-		_object_to_interact.interact()
+		_object_to_interact.interact(self)
 
 func _find_interactable():
 	if interaction_area.interactables.size() == 0:
@@ -30,6 +35,8 @@ func _find_interactable():
 	var min_dist := 0.0
 	var closest : Node2D = null
 	for _area in interaction_area.interactables:
+		if not is_instance_valid(_area):
+			continue
 		var object : Node2D = _area.get_parent() as Node2D
 		var dist = (global_position.distance_to(object.global_position))
 		if closest == null or dist < min_dist:
@@ -48,3 +55,13 @@ func _highlight_interactable():
 	if _object_to_interact.has_method("highlight"):
 		_object_to_interact.highlight()
 		
+
+func _visualize_inventory():
+	if inventory_vis:
+		remove_child(inventory_vis)
+		inventory_vis.queue_free()
+		inventory_vis = null
+		print("already has inventory visualize")
+		return
+	inventory_vis = inventory.get_visualization()
+	add_child(inventory_vis)

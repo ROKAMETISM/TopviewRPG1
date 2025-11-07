@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=4 uid="uid://cvgnanl3nml2y"]
+[gd_scene load_steps=7 format=4 uid="uid://cvgnanl3nml2y"]
 
 [ext_resource type="TileSet" uid="uid://bjef2iw7cdxq3" path="res://Main/main_tileset.tres" id="1_2w1kt"]
 [ext_resource type="PackedScene" uid="uid://brmxhb3vwm50p" path="res://Dummy/dummy.tscn" id="1_yh5la"]
 [ext_resource type="PackedScene" uid="uid://bgn32fam44235" path="res://Interactives/Door/door.tscn" id="3_qvhan"]
+[ext_resource type="PackedScene" uid="uid://du4bre46qq5ga" path="res://Items/item_pickup.tscn" id="4_liyct"]
+[ext_resource type="Resource" uid="uid://dntdbofhnh8a4" path="res://Items/Content/apple.tres" id="5_ib3t1"]
+[ext_resource type="Resource" uid="uid://dojy3w0dx33x6" path="res://Items/Content/stick.tres" id="6_f6fdm"]
 
 [node name="Main" type="Node2D"]
 
@@ -16,17 +19,20 @@ position = Vector2(379, 270)
 [node name="Door" parent="." instance=ExtResource("3_qvhan")]
 position = Vector2(600, 445)
 
-[node name="Door2" parent="." instance=ExtResource("3_qvhan")]
-position = Vector2(493, 466)
-
 [node name="Door3" parent="." instance=ExtResource("3_qvhan")]
 position = Vector2(467, 459)
 
-[node name="Door4" parent="." instance=ExtResource("3_qvhan")]
-position = Vector2(609, 483)
-
-[node name="Door5" parent="." instance=ExtResource("3_qvhan")]
-position = Vector2(553, 490)
-
 [node name="Door6" parent="." instance=ExtResource("3_qvhan")]
 position = Vector2(680, 361)
+
+[node name="ItemPickup" parent="." instance=ExtResource("4_liyct")]
+position = Vector2(566, 284)
+item_type = ExtResource("5_ib3t1")
+
+[node name="ItemPickup2" parent="." instance=ExtResource("4_liyct")]
+position = Vector2(657, 281)
+item_type = ExtResource("6_f6fdm")
+
+[node name="ItemPickup3" parent="." instance=ExtResource("4_liyct")]
+position = Vector2(730, 286)
+item_type = ExtResource("6_f6fdm")

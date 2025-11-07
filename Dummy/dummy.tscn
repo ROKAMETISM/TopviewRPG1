@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://brmxhb3vwm50p"]
+[gd_scene load_steps=7 format=3 uid="uid://brmxhb3vwm50p"]
 
 [ext_resource type="Script" uid="uid://d3meqvxkjjt4w" path="res://Dummy/dummy.gd" id="1_nynhp"]
 [ext_resource type="SpriteFrames" uid="uid://cryh15i15yrym" path="res://Dummy/Assets/dummy_sprite_frames.tres" id="1_tx5ky"]
 [ext_resource type="Script" uid="uid://fs3y0r502pw3" path="res://Dummy/interaction_area.gd" id="3_d42o3"]
+[ext_resource type="Script" uid="uid://bkv2s8uqkofoh" path="res://Scripts/Inventory/inventory.gd" id="4_vqisv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d42o3"]
 size = Vector2(16, 18)
@@ -33,3 +34,7 @@ script = ExtResource("3_d42o3")
 shape = SubResource("CircleShape2D_vqisv")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Inventory" type="Node" parent="."]
+script = ExtResource("4_vqisv")
+metadata/_custom_type_script = "uid://bkv2s8uqkofoh"

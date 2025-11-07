@@ -1,14 +1,35 @@
 class_name Inventory extends Node
 
-var dimensions : Vector2i = Vector2i(1, 1)
+var data : Dictionary[Item, int]
+var order : Array[Item]
 
-var data : Dictionary[Vector2i, Item]
-
-func init(columns : int = 1, rows : int = 1)->void:
-	dimensions = Vector2i(columns, rows)
-	for row in rows:
-		for column in columns:
-			data.set(Vector2i(column, row), null)
 
 func add_item(item : Item, amount : int = 1)->int:
-	if data.
+	if not data.has(item):
+		order.push_front(item)
+		data[item] = amount
+		return amount
+	data[item]+=amount
+	return data[item]
+
+func get_item(item:Item, amount:int = 1)->int:
+	if not data.has(item):
+		return 0
+	if data[item] > amount:
+		data[item] -= amount
+		return data[item]
+	var remain := data[item]
+	data.erase(item)
+	order.erase(item)
+	return remain
+
+func _to_string() -> String:
+	return str(data)
+
+func get_visualization()->GridContainer:
+	var grid : GridContainer = GridContainer.new()
+	for item in order:
+		var icon : TextureRect = TextureRect.new()
+		icon.texture = item.icon
+		grid.add_child(icon)
+	return grid

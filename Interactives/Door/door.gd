@@ -7,21 +7,15 @@ const SPRITE_CLOSED := preload("uid://b65j7wlxi8o7a")
 
 var _is_open := false
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
 
 func interact() -> void:
 	_is_open = not _is_open
 	if _is_open:
 		sprite.texture = SPRITE_OPEN
+		set_collision_layer_value(1, false)
 	else:
 		sprite.texture = SPRITE_CLOSED
+		set_collision_layer_value(1, true)
 
 func highlight()->void:
 	modulate.a = 0.3

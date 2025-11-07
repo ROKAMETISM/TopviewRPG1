@@ -4,8 +4,8 @@
 [ext_resource type="SpriteFrames" uid="uid://cryh15i15yrym" path="res://Dummy/Assets/dummy_sprite_frames.tres" id="1_tx5ky"]
 [ext_resource type="Script" uid="uid://fs3y0r502pw3" path="res://Dummy/interaction_area.gd" id="3_d42o3"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_tx5ky"]
-radius = 12.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d42o3"]
+size = Vector2(16, 16)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vqisv"]
 radius = 32.0
@@ -18,7 +18,7 @@ sprite_frames = ExtResource("1_tx5ky")
 animation = &"IDLE_front"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_tx5ky")
+shape = SubResource("RectangleShape2D_d42o3")
 
 [node name="Controllers" type="Node" parent="."]
 

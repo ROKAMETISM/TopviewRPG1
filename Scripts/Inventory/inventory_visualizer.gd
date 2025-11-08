@@ -4,6 +4,8 @@ const SLOT_SIZE := 16
 const MARGIN := 2
 
 static func visualize(inventory : Inventory) -> Control:
+	if inventory.style == null or not is_instance_valid(inventory.style):
+		return null
 	var root := Control.new()
 	var style : InventoryStyle = inventory.style
 	

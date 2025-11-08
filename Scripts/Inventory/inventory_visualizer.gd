@@ -63,6 +63,8 @@ func visualize(inventory : Inventory) -> Control:
 	
 	root.scale = Vector2(SCALE, SCALE)
 	root.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+	root.modulate.a = inventory.style.alpha
+	root.z_index = 200
 	
 	inventory.visualization = root
 	return root

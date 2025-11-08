@@ -33,13 +33,14 @@ static func visualize(inventory : Inventory) -> Control:
 		var slot := TextureRect.new()
 		slot.texture = style.slot_texture
 		grid.add_child(slot)
-		if i < inventory.order.size():
-			var item_icon := TextureRect.new()
-			item_icon.texture = inventory.order[i].icon
-			slot.add_child(item_icon)
-			var item_label := Label.new()
-			item_label.text = str(inventory.data[inventory.order[i]])
-			slot.add_child(item_label)
+		if i >= inventory.order.size():
+			continue
+		var item_icon := TextureRect.new()
+		item_icon.texture = inventory.order[i].icon
+		slot.add_child(item_icon)
+		var item_label := Label.new()
+		item_label.text = str(inventory.data[inventory.order[i]])
+		slot.add_child(item_label)
 	
 	root.add_child(grid)
 	

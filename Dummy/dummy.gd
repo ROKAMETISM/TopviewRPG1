@@ -2,15 +2,16 @@ class_name Dummy extends CharacterBody2D
 
 @onready var interaction_area : Area2D = %InteractionArea
 @onready var inventory : Inventory = $Inventory
-var inventory_vis : Control = null
+var inventory_visualizer : Control = null
 
 var _object_to_interact : Node2D = null
 
+func _ready() -> void:
+	_connect_signals()
+
 
 func _physics_process(delta: float) -> void:
-	var move_direction : Vector2 = Input.get_vector("move_left", "move_right", "move_up", "move_down")
-	velocity = move_direction * 200
-	move_and_collide(velocity * delta)
+	_process_move(delta)
 	_find_interactable()
 	_highlight_interactable()
 	
@@ -19,6 +20,14 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("open_inventory"):
 		_visualize_inventory()
 	
+
+func _connect_signals()->void:
+	pass
+
+func _process_move(delta:float)->void:
+	var move_direction : Vector2 = Input.get_vector("move_left", "move_right", "move_up", "move_down")
+	velocity = move_direction * 200
+	move_and_collide(velocity * delta)
 
 func _interact()->void:
 	if not _object_to_interact:
@@ -57,12 +66,10 @@ func _highlight_interactable():
 		
 
 func _visualize_inventory():
-	print(inventory.size)
-	if inventory_vis:
-		remove_child(inventory_vis)
-		inventory_vis.queue_free()
-		inventory_vis = null
-		print("already has inventory visualize")
+	if inventory_visualizer:
+		remove_child(inventory_visualizer)
+		inventory_visualizer.queue_free()
+		inventory_visualizer = null
 		return
-	inventory_vis = InventoryVisualizer.visualize(inventory)
-	add_child(inventory_vis)
+	inventory_visualizer = InventoryVisualizer.visualize(inventory)
+	add_child(inventory_visualizer)

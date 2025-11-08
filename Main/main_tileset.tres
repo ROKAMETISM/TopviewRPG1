@@ -1,8 +1,8 @@
 [gd_resource type="TileSet" load_steps=7 format=3 uid="uid://bjef2iw7cdxq3"]
 
-[ext_resource type="Texture2D" uid="uid://dvtd0cooo7sxb" path="res://Cute_Fantasy_Free/Tiles/Grass_Middle.png" id="1_imj4g"]
-[ext_resource type="Texture2D" uid="uid://dhjkelx3opv3o" path="res://Cute_Fantasy_Free/Tiles/Path_Middle.png" id="2_yw8cp"]
-[ext_resource type="Texture2D" uid="uid://kf2j61c1wagw" path="res://Cute_Fantasy_Free/Tiles/Path_Tile.png" id="3_yw8cp"]
+[ext_resource type="Texture2D" uid="uid://dvtd0cooo7sxb" path="res://Assets/Cute_Fantasy_Free/Tiles/Grass_Middle.png" id="1_imj4g"]
+[ext_resource type="Texture2D" uid="uid://dhjkelx3opv3o" path="res://Assets/Cute_Fantasy_Free/Tiles/Path_Middle.png" id="2_yw8cp"]
+[ext_resource type="Texture2D" uid="uid://kf2j61c1wagw" path="res://Assets/Cute_Fantasy_Free/Tiles/Path_Tile.png" id="3_yw8cp"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3heap"]
 texture = ExtResource("1_imj4g")

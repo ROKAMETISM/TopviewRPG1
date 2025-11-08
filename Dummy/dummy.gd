@@ -2,7 +2,7 @@ class_name Dummy extends CharacterBody2D
 
 @onready var interaction_area : Area2D = %InteractionArea
 @onready var inventory : Inventory = $Inventory
-var inventory_vis : GridContainer = null
+var inventory_vis : Control = null
 
 var _object_to_interact : Node2D = null
 
@@ -57,11 +57,12 @@ func _highlight_interactable():
 		
 
 func _visualize_inventory():
+	print(inventory.size)
 	if inventory_vis:
 		remove_child(inventory_vis)
 		inventory_vis.queue_free()
 		inventory_vis = null
 		print("already has inventory visualize")
 		return
-	inventory_vis = inventory.get_visualization()
+	inventory_vis = InventoryVisualizer.visualize(inventory)
 	add_child(inventory_vis)

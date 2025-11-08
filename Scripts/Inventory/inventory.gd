@@ -2,10 +2,17 @@ class_name Inventory extends Node
 
 var data : Dictionary[Item, int]
 var order : Array[Item]
+var size := 1
+@export var style : InventoryStyle
 
+func _ready() -> void:
+	if style:
+		size = style.dimensions.x * style.dimensions.y
 
 func add_item(item : Item, amount : int = 1)->int:
 	if not data.has(item):
+		if order.size() >= size:
+			return 0
 		order.push_front(item)
 		data[item] = amount
 		return amount
@@ -25,12 +32,3 @@ func get_item(item:Item, amount:int = 1)->int:
 
 func _to_string() -> String:
 	return str(data)
-
-func get_visualization()->GridContainer:
-	var grid : GridContainer = GridContainer.new()
-	for item in order:
-		var icon : TextureRect = TextureRect.new()
-		icon.texture = item.icon
-		grid.add_child(icon)
-		#temp comment
-	return grid

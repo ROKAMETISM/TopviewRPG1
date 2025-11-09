@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dujm6rmi8lqfl" path="res://Assets/Cute_Fantasy_Free/Outdoor decoration/Chest.png" id="1_i6u3o"]
 [ext_resource type="PackedScene" uid="uid://caddqxacvpq2y" path="res://Interactables/interactable.tscn" id="2_2iha1"]
 [ext_resource type="Script" uid="uid://bkv2s8uqkofoh" path="res://Scripts/Inventory/inventory.gd" id="4_xfqkh"]
-[ext_resource type="Resource" uid="uid://c2mddfurrjh2y" path="res://Scripts/Inventory/chest_style.tres" id="5_tykjl"]
+[ext_resource type="Resource" uid="uid://c2mddfurrjh2y" path="res://Scripts/Inventory/Styles/chest_style.tres" id="5_tykjl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ar8hh"]
 size = Vector2(14, 13)

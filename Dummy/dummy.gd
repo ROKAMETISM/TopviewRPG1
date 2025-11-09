@@ -23,11 +23,13 @@ func _physics_process(delta: float) -> void:
 		_visualize_inventory()
 	
 func access_inventory(target_inventory : Inventory)->void:
+	if external_inventory == target_inventory:
+		return
+	if target_inventory == null or not is_instance_valid(target_inventory):
+		return
 	external_inventory = target_inventory
+	_visualize_inventory(true)
 	_visualize_inventory()
-	if not external_inventory_visualizer:
-		_visualize_inventory()
-
 
 func _connect_signals()->void:
 	pass
@@ -76,7 +78,10 @@ func _highlight_interactable():
 		_object_to_interact.highlight()
 
 
-func _visualize_inventory():
+func _visualize_inventory(force_close : bool = false):
+	if force_close:
+		_close_inventory_visualization()
+		return
 	if not _visualizing_inventory():
 		inventory_visualizer = InventoryVisualizer.visualize(inventory)
 		if external_inventory:
@@ -86,15 +91,16 @@ func _visualize_inventory():
 			add_child(external_inventory_visualizer)
 		add_child(inventory_visualizer)
 		return
-	if inventory_visualizer:
-		remove_child(inventory_visualizer)
-		inventory_visualizer.queue_free()
-		inventory_visualizer = null
-	if external_inventory_visualizer:
-		remove_child(external_inventory_visualizer)
-		external_inventory_visualizer.queue_free()
-		external_inventory_visualizer = null
-		external_inventory = null
+	_close_inventory_visualization()
 
 func _visualizing_inventory()->bool:
 	return (inventory_visualizer and is_instance_valid(inventory_visualizer)) or (external_inventory_visualizer and is_instance_valid(external_inventory_visualizer))
+
+func _close_inventory_visualization()->void:
+	if inventory_visualizer:
+		inventory_visualizer.queue_free()
+		inventory_visualizer = null
+	if external_inventory_visualizer:
+		external_inventory_visualizer.queue_free()
+		external_inventory_visualizer = null
+		external_inventory = null

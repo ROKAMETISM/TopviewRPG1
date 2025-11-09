@@ -3,7 +3,6 @@ extends Node
 
 const SLOT_SIZE := 16
 const MARGIN := 2
-const SCALE := 1.0
 
 func visualize(inventory : Inventory) -> Control:
 	if inventory.style == null or not is_instance_valid(inventory.style):
@@ -34,6 +33,7 @@ func visualize(inventory : Inventory) -> Control:
 	background_size += Vector2i(MARGIN, MARGIN)
 	background.size = background_size
 	background.position = - background_size / 2
+	background.self_modulate.a = inventory.style.alpha
 	
 	var grid := GridContainer.new()
 	grid.position = Vector2(MARGIN, MARGIN)
@@ -45,25 +45,26 @@ func visualize(inventory : Inventory) -> Control:
 		var slot := TextureRect.new()
 		slot.texture = style.slot_texture
 		slot.size = Vector2(SLOT_SIZE, SLOT_SIZE)
+		slot.self_modulate.a = inventory.style.alpha
 		grid.add_child(slot)
 		if i >= inventory.order.size():
 			continue
 		var item_icon := TextureRect.new()
+		item_icon.size = Vector2(SLOT_SIZE, SLOT_SIZE)
 		item_icon.texture = inventory.order[i].icon
 		slot.add_child(item_icon)
 		var item_label := Label.new()
-		item_label.size = Vector2(SLOT_SIZE, SLOT_SIZE)
+		item_label.set_anchors_preset(Control.PRESET_FULL_RECT)
+		item_label.label_settings = preload("uid://cnnvutffqpqar")
+		item_label.text = str(inventory.data[inventory.order[i]])
 		item_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 		item_label.vertical_alignment = VERTICAL_ALIGNMENT_BOTTOM
-		item_label.text = str(inventory.data[inventory.order[i]])
 		slot.add_child(item_label)
 	
 	background.add_child(grid)
 	root.add_child(background)
 	
-	root.scale = Vector2(SCALE, SCALE)
 	root.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
-	root.modulate.a = inventory.style.alpha
 	root.z_index = 200
 	
 	inventory.visualization = root

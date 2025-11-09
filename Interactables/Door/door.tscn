@@ -4,22 +4,15 @@
 [ext_resource type="Script" uid="uid://cowwhcygtioa1" path="res://Interactables/Door/door.gd" id="1_v1oib"]
 [ext_resource type="PackedScene" uid="uid://caddqxacvpq2y" path="res://Interactables/interactable.tscn" id="3_jivkg"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_v1oib"]
-size = Vector2(28, 26)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hvxtw"]
 size = Vector2(37, 33)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v1oib"]
+size = Vector2(28, 26)
 
 [node name="Door" type="StaticBody2D"]
 collision_mask = 0
 script = ExtResource("1_v1oib")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_feejb")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1, 3)
-shape = SubResource("RectangleShape2D_v1oib")
 
 [node name="Interactable" parent="." node_paths=PackedStringArray("parent") instance=ExtResource("3_jivkg")]
 parent = NodePath("..")
@@ -27,3 +20,10 @@ parent = NodePath("..")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable"]
 position = Vector2(0.5, 2.5)
 shape = SubResource("RectangleShape2D_hvxtw")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(1, 3)
+shape = SubResource("RectangleShape2D_v1oib")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_feejb")

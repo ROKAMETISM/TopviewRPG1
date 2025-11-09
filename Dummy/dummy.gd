@@ -2,7 +2,9 @@ class_name Dummy extends CharacterBody2D
 
 @onready var interaction_area : Area2D = %InteractionArea
 @onready var inventory : Inventory = $Inventory
+var external_inventory : Inventory = null
 var inventory_visualizer : Control = null
+var external_inventory_visualizer : Control = null
 
 var _object_to_interact : Interactable = null
 
@@ -19,6 +21,10 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("open_inventory"):
 		_visualize_inventory()
 	
+func access_inventory(target_inventory : Inventory)->void:
+	external_inventory = target_inventory
+	_visualize_inventory()
+
 
 func _connect_signals()->void:
 	pass
@@ -65,13 +71,24 @@ func _highlight_interactable():
 		return
 	if _object_to_interact.has_method("highlight"):
 		_object_to_interact.highlight()
-		
+
 
 func _visualize_inventory():
+	if not _visualizing_inventory():
+		inventory_visualizer = InventoryVisualizer.visualize(inventory)
+		add_child(inventory_visualizer)
+		if external_inventory:
+			external_inventory_visualizer = InventoryVisualizer.visualize(external_inventory)
+			add_child(external_inventory_visualizer)
+		return
 	if inventory_visualizer:
 		remove_child(inventory_visualizer)
 		inventory_visualizer.queue_free()
 		inventory_visualizer = null
-		return
-	inventory_visualizer = InventoryVisualizer.visualize(inventory)
-	add_child(inventory_visualizer)
+	if external_inventory_visualizer:
+		remove_child(external_inventory_visualizer)
+		external_inventory_visualizer.queue_free()
+		external_inventory_visualizer = null
+
+func _visualizing_inventory()->bool:
+	return (inventory_visualizer and is_instance_valid(inventory_visualizer)) or (external_inventory_visualizer and is_instance_valid(external_inventory_visualizer))

@@ -1,0 +1,32 @@
+[gd_scene load_steps=8 format=3 uid="uid://b5eacvdmdr6xr"]
+
+[ext_resource type="Script" uid="uid://bfgkkv50j4cux" path="res://Interactables/Chest/chest.gd" id="1_ar8hh"]
+[ext_resource type="Texture2D" uid="uid://dujm6rmi8lqfl" path="res://Assets/Cute_Fantasy_Free/Outdoor decoration/Chest.png" id="1_i6u3o"]
+[ext_resource type="PackedScene" uid="uid://caddqxacvpq2y" path="res://Interactables/interactable.tscn" id="2_2iha1"]
+[ext_resource type="Script" uid="uid://bkv2s8uqkofoh" path="res://Scripts/Inventory/inventory.gd" id="4_xfqkh"]
+[ext_resource type="Resource" uid="uid://c2mddfurrjh2y" path="res://Scripts/Inventory/chest_style.tres" id="5_tykjl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ar8hh"]
+size = Vector2(14, 13)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xfqkh"]
+
+[node name="Chest" type="StaticBody2D"]
+script = ExtResource("1_ar8hh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_ar8hh")
+
+[node name="Interactable" parent="." instance=ExtResource("2_2iha1")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable"]
+shape = SubResource("CircleShape2D_xfqkh")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_i6u3o")
+
+[node name="Inventory" type="Node" parent="."]
+script = ExtResource("4_xfqkh")
+style = ExtResource("5_tykjl")
+metadata/_custom_type_script = "uid://bkv2s8uqkofoh"

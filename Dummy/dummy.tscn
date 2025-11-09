@@ -4,7 +4,7 @@
 [ext_resource type="SpriteFrames" uid="uid://cryh15i15yrym" path="res://Dummy/Assets/dummy_sprite_frames.tres" id="1_tx5ky"]
 [ext_resource type="Script" uid="uid://fs3y0r502pw3" path="res://Dummy/interaction_area.gd" id="3_d42o3"]
 [ext_resource type="Script" uid="uid://bkv2s8uqkofoh" path="res://Scripts/Inventory/inventory.gd" id="4_vqisv"]
-[ext_resource type="Resource" uid="uid://bgmlvv3nqqxet" path="res://Scripts/Inventory/default_style.tres" id="5_t6b74"]
+[ext_resource type="Resource" uid="uid://bgmlvv3nqqxet" path="res://Scripts/Inventory/player_style.tres" id="5_t6b74"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d42o3"]
 size = Vector2(16, 18)
@@ -35,6 +35,7 @@ script = ExtResource("3_d42o3")
 shape = SubResource("CircleShape2D_vqisv")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
 
 [node name="Inventory" type="Node" parent="."]
 script = ExtResource("4_vqisv")

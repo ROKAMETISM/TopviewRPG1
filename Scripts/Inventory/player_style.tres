@@ -6,7 +6,7 @@
 
 [resource]
 script = ExtResource("1_0opdw")
-dimensions = Vector2i(9, 3)
+dimensions = Vector2i(5, 5)
 background_texture = ExtResource("1_xl3th")
 slot_texture = ExtResource("3_8dmcc")
 metadata/_custom_type_script = "uid://bd83660tkbwn8"

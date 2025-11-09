@@ -46,7 +46,7 @@ func visualize(inventory : Inventory) -> Control:
 	for i in inventory.size:
 		var slot := TextureRect.new()
 		slot.texture = style.slot_texture
-		slot.stretch_mode = TextureRect.STRETCH_SCALE
+		slot.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT
 		slot.size = Vector2(SLOT_SIZE, SLOT_SIZE)
 		slot.self_modulate.a = inventory.style.alpha
 		grid.add_child(slot)
@@ -54,7 +54,7 @@ func visualize(inventory : Inventory) -> Control:
 			continue
 		var item_icon := TextureRect.new()
 		#item_icon.size = Vector2(SLOT_SIZE, SLOT_SIZE)
-		item_icon.stretch_mode = TextureRect.STRETCH_SCALE
+		item_icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT
 		item_icon.set_anchors_preset(Control.PRESET_FULL_RECT)
 		item_icon.texture = inventory.order[i].icon
 		slot.add_child(item_icon)

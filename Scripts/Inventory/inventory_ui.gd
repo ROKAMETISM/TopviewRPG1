@@ -35,7 +35,6 @@ func visualize(inventory_to_visualize : Inventory) -> Control:
 	
 	grid.position = Vector2(style.background_margin, style.background_margin)
 	grid.size = background_size
-	#grid.position = - background_size / 2
 	grid.columns = style.dimensions.x
 	grid.add_theme_constant_override("h_separation", style.grid_margin)
 	grid.add_theme_constant_override("v_separation", style.grid_margin)
@@ -43,7 +42,6 @@ func visualize(inventory_to_visualize : Inventory) -> Control:
 	for i in inventory_to_visualize.size:
 		var slot := TextureRect.new()
 		slot.texture = style.slot_texture
-		#slot.set_anchors_preset(Control.PRESET_CENTER)
 		slot.custom_minimum_size = Vector2(SLOT_SIZE, SLOT_SIZE)
 		slot.self_modulate.a = inventory_to_visualize.style.alpha
 		grid.add_child(slot)

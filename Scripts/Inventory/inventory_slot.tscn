@@ -1,10 +1,6 @@
-[gd_scene format=3 uid="uid://cklbnqtl3pcjn"]
+[gd_scene load_steps=2 format=3 uid="uid://cklbnqtl3pcjn"]
+
+[ext_resource type="Texture2D" uid="uid://vk0ckwqm22bp" path="res://Assets/inventory_simple_slot.png" id="1_gv4rj"]
 
 [node name="InventorySlot" type="TextureRect"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-grow_horizontal = 2
-grow_vertical = 2
+texture = ExtResource("1_gv4rj")

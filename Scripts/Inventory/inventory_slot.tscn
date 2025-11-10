@@ -1,6 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://cklbnqtl3pcjn"]
+[gd_scene load_steps=3 format=3 uid="uid://cklbnqtl3pcjn"]
 
 [ext_resource type="Texture2D" uid="uid://vk0ckwqm22bp" path="res://Assets/inventory_simple_slot.png" id="1_gv4rj"]
+[ext_resource type="Script" uid="uid://yi75whoqidvw" path="res://Scripts/Inventory/inventory_slot.gd" id="2_rxhss"]
 
 [node name="InventorySlot" type="TextureRect"]
 texture = ExtResource("1_gv4rj")
+script = ExtResource("2_rxhss")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

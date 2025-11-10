@@ -2,6 +2,7 @@ class_name InventoryUI
 extends Control
 
 const SLOT_SIZE := 32
+const INVENTORY_SLOT : PackedScene = preload("uid://cklbnqtl3pcjn")
 
 @onready var background : NinePatchRect = %Background
 @onready var grid : GridContainer = %Grid
@@ -40,10 +41,11 @@ func visualize(inventory_to_visualize : Inventory) -> Control:
 	grid.add_theme_constant_override("v_separation", style.grid_margin)
 	
 	for i in inventory_to_visualize.size:
-		var slot := TextureRect.new()
+		var slot : InventorySlot = INVENTORY_SLOT.instantiate()
 		slot.texture = style.slot_texture
 		slot.custom_minimum_size = Vector2(SLOT_SIZE, SLOT_SIZE)
 		slot.self_modulate.a = inventory_to_visualize.style.alpha
+		slot.index = i
 		grid.add_child(slot)
 		if i >= inventory_to_visualize.order.size():
 			continue

@@ -9,4 +9,7 @@ script = ExtResource("2_3olxh")
 dimensions = Vector2i(5, 5)
 background_texture = ExtResource("1_uyl8e")
 slot_texture = ExtResource("3_x465k")
+slot_patch_margin = 5
+grid_margin = 2
+background_margin = 8
 metadata/_custom_type_script = "uid://bd83660tkbwn8"

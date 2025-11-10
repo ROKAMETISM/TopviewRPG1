@@ -1,15 +1,25 @@
-[gd_scene load_steps=8 format=3 uid="uid://b5eacvdmdr6xr"]
+[gd_scene load_steps=10 format=3 uid="uid://b5eacvdmdr6xr"]
 
 [ext_resource type="Script" uid="uid://bfgkkv50j4cux" path="res://Interactables/Chest/chest.gd" id="1_ar8hh"]
 [ext_resource type="Texture2D" uid="uid://dujm6rmi8lqfl" path="res://Assets/Cute_Fantasy_Free/Outdoor decoration/Chest.png" id="1_i6u3o"]
 [ext_resource type="PackedScene" uid="uid://caddqxacvpq2y" path="res://Interactables/interactable.tscn" id="2_2iha1"]
+[ext_resource type="Shader" uid="uid://dh3ja38u0234j" path="res://Testing/testshader.gdshader" id="3_nrcaj"]
 [ext_resource type="Script" uid="uid://bkv2s8uqkofoh" path="res://Scripts/Inventory/inventory.gd" id="4_xfqkh"]
-[ext_resource type="Resource" uid="uid://c2mddfurrjh2y" path="res://Scripts/Inventory/Styles/chest_style.tres" id="5_tykjl"]
+[ext_resource type="Resource" uid="uid://b80pxvgj3r6i3" path="res://Scripts/Inventory/Styles/simple_style.tres" id="5_tykjl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ar8hh"]
 size = Vector2(14, 13)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xfqkh"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0xk1n"]
+shader = ExtResource("3_nrcaj")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/width = 1.0
+shader_parameter/pattern = 0
+shader_parameter/inside = false
+shader_parameter/add_margins = true
+shader_parameter/number_of_images = Vector2(1, 1)
 
 [node name="Chest" type="StaticBody2D"]
 script = ExtResource("1_ar8hh")
@@ -24,6 +34,7 @@ shape = SubResource("RectangleShape2D_ar8hh")
 shape = SubResource("CircleShape2D_xfqkh")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_0xk1n")
 texture = ExtResource("1_i6u3o")
 
 [node name="Inventory" type="Node" parent="."]

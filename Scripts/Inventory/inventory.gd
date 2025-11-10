@@ -1,5 +1,7 @@
 class_name Inventory extends Node
 
+const INVENTORY_UI : PackedScene = preload("uid://bhjhobr55mp1p")
+
 var data : Dictionary[Item, int]
 var order : Array[Item]
 var size := 1
@@ -39,3 +41,9 @@ func get_item(item:Item, amount:int = 1)->int:
 
 func _to_string() -> String:
 	return str(data)
+
+func visualize()->Control:
+	if not visualization:
+		visualization = INVENTORY_UI.instantiate()
+		visualization.inventory = self
+	return visualization

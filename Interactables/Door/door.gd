@@ -9,7 +9,7 @@ var _is_open := false
 
 
 
-func _on_interacted(source:Node2D)->void:
+func _on_interacted(_source:Node2D)->void:
 	_is_open = not _is_open
 	if _is_open:
 		sprite.texture = SPRITE_OPEN

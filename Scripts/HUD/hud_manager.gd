@@ -3,7 +3,7 @@ extends Node
 var hudlayer : CanvasLayer = CanvasLayer.new()
 
 func _ready() -> void:
-	get_tree().current_scene.add_child(hudlayer)
+	add_child(hudlayer)
 
 func add_hud(element : Control)->void:
 	hudlayer.add_child(element)

@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://caddqxacvpq2y" path="res://Interactables/interactable.tscn" id="2_2iha1"]
 [ext_resource type="Shader" uid="uid://dh3ja38u0234j" path="res://Testing/testshader.gdshader" id="3_nrcaj"]
 [ext_resource type="Script" uid="uid://bkv2s8uqkofoh" path="res://Scripts/Inventory/inventory.gd" id="4_xfqkh"]
-[ext_resource type="Resource" uid="uid://b80pxvgj3r6i3" path="res://Scripts/Inventory/Styles/simple_style.tres" id="5_tykjl"]
+[ext_resource type="Resource" uid="uid://c2mddfurrjh2y" path="res://Scripts/Inventory/Styles/chest_style.tres" id="5_tykjl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ar8hh"]
 size = Vector2(14, 13)

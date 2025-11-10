@@ -6,7 +6,7 @@
 
 [resource]
 script = ExtResource("1_owes6")
-dimensions = Vector2i(7, 4)
+dimensions = Vector2i(9, 3)
 background_texture = ExtResource("1_k8exp")
 slot_texture = ExtResource("3_5wg45")
 slot_patch_margin = 3

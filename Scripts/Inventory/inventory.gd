@@ -5,7 +5,7 @@ const INVENTORY_UI : PackedScene = preload("uid://bhjhobr55mp1p")
 var data : Dictionary[Item, int]
 var order : Array[Item]
 var size := 1
-var visualization : Control = null
+var visualization : InventoryUI = null
 @export var style : InventoryStyle
 
 signal updated(inventory : Inventory)
@@ -42,8 +42,9 @@ func get_item(item:Item, amount:int = 1)->int:
 func _to_string() -> String:
 	return str(data)
 
-func visualize()->Control:
+func visualize()->InventoryUI:
 	if not visualization:
 		visualization = INVENTORY_UI.instantiate()
+		updated.connect(visualization.visualize)
 		visualization.inventory = self
 	return visualization

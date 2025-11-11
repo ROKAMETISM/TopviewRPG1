@@ -32,7 +32,7 @@ func access_inventory(target_inventory : Inventory)->void:
 	_visualize_inventory()
 
 func _connect_signals()->void:
-	pass
+	UIEventManager.inventory_input.connect(_on_ui_inventory_input)
 
 func _process_move(delta:float)->void:
 	var move_direction : Vector2 = Input.get_vector("move_left", "move_right", "move_up", "move_down")
@@ -106,3 +106,13 @@ func _close_inventory_visualization()->void:
 		HUDManager.free_hud(external_inventory_visualizer)
 		external_inventory_visualizer = null
 		external_inventory = null
+
+func _on_ui_inventory_input(inv:Inventory, item:Item, amount:int):
+	if inventory_visualizer and external_inventory_visualizer:
+		if inv == inventory:
+			inventory.get_item(item, amount)
+			external_inventory.add_item(item, amount)
+		elif inv == external_inventory:
+			external_inventory.get_item(item, amount)
+			inventory.add_item(item, amount)
+			

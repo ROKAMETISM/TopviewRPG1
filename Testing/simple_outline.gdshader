@@ -1,7 +1,7 @@
 shader_type canvas_item;
 
 uniform vec4 color : source_color = vec4(1.0);
-uniform bool enable = true;
+uniform bool enable = false;
 varying flat vec4 modulate;
 
 void vertex()

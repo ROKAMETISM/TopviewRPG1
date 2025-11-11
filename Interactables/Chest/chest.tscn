@@ -24,7 +24,9 @@ script = ExtResource("1_ar8hh")
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_ar8hh")
 
-[node name="Interactable" parent="." instance=ExtResource("2_2iha1")]
+[node name="Interactable" parent="." node_paths=PackedStringArray("parent", "sprite") instance=ExtResource("2_2iha1")]
+parent = NodePath("..")
+sprite = NodePath("../Sprite2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable"]
 shape = SubResource("CircleShape2D_xfqkh")

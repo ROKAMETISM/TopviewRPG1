@@ -2,13 +2,13 @@
 
 Designing a simple Topview RPG with survival elements.
 
-##Features :
+## Features :
 	
-	- Inventory
+	- Inventory System
 	
-	- Interaction
+	- Interaction as Component
 
-##Inventory system
+## Inventory system
 
 Inventory is defined with data as Dictionary, order as Array, and style resource.
 
@@ -22,7 +22,7 @@ UI elements like background and slots as its child tree then pass it to the call
 
 InventoryVisualizer also updates the existing visualization of an inventory, if it has one.
 
-##Interaction system
+## Interaction system
 
 An Interactable object is created by just attaching the "Interactable" component scene to the tree.
 
@@ -31,17 +31,12 @@ emitting signal when interacted.
 
 The actual interaction code is defined on the parent class, and the InteractableComponent only depends on it to work.
 
-##Todo 
-
--> Inventory
+## Todo 
 
 -> Tool interface
 
 ->Interactive world interface -> HP
 
-Chest (inventory) <- store / retrieve interface
-
-Interface / Contract?
 
 "Axe" -> chop tree
 

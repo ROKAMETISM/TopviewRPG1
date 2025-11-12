@@ -3,6 +3,20 @@ extends Node2D
 var grip_position
 var is_grip
 var entered_mouse
+var hand : Array
+
+const HAND_ROTATION_RANGE : float = 2.5
+
+func hand_sort()->void:
+	if hand.size() <= 1:
+		return
+	for i in hand.size():
+		# i : 0 -> hand.size()-1
+		var card_rotation = -HAND_ROTATION_RANGE * hand.size() + i / (hand.size()-1) * 2 * HAND_ROTATION_RANGE * hand.size()
+		hand[i].rotation = card_rotation
+		
+
+
 
 func _process(delta: float) -> void:
 	

@@ -12,6 +12,10 @@ func _ready() -> void:
 	if parent.has_method("_on_interacted"):
 		interacted.connect(parent._on_interacted)
 	_find_sprite()
+	monitoring = false
+	monitorable = true
+	collision_layer = 0b10000000
+	collision_mask = 0b0
 
 func interact(_source:Node2D) -> void:
 	interacted.emit(_source)

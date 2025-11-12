@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 HUDManager="*res://Scripts/UI/hud_manager.gd"
 UIEventManager="*res://Scripts/UI/ui_event_manager.gd"
+Preloads="*res://Scripts/preloads.gd"
 
 [input]
 

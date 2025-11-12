@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://geve18s8tiyb"]
+
+[ext_resource type="Script" uid="uid://dvev12emccvvv" path="res://Interactables/Apple Tree/apple_tree.gd" id="1_o8l4d"]
+[ext_resource type="Texture2D" uid="uid://ccx4h72l3iiy4" path="res://Assets/Cute_Fantasy_Free/Outdoor decoration/Oak_Tree.png" id="2_oflv6"]
+[ext_resource type="Script" uid="uid://bqg0t1ckol1g4" path="res://Interactables/interactable.gd" id="3_gh0jl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_00vcp"]
+size = Vector2(10, 32)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vwatk"]
+radius = 23.0
+
+[node name="AppleTree" type="StaticBody2D"]
+script = ExtResource("1_o8l4d")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_oflv6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+z_index = 2
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_00vcp")
+
+[node name="Interactable" type="Area2D" parent="." node_paths=PackedStringArray("parent", "sprite")]
+script = ExtResource("3_gh0jl")
+parent = NodePath("..")
+sprite = NodePath("../Sprite2D")
+metadata/_custom_type_script = "uid://bqg0t1ckol1g4"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable"]
+shape = SubResource("CircleShape2D_vwatk")

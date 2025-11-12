@@ -64,8 +64,8 @@ func visualize(inventory_to_visualize : Inventory) -> Control:
 		slot.add_child(item_label)
 	return self
 
-func _on_slot_selected(slot_index : int, shift : bool, ctrl : bool)->void:
-	print("%d slot selected %s %s"%[slot_index, "Shift" if shift else "", "CTRL" if ctrl else ""])
+func _on_slot_selected(slot_index : int, shift : bool, ctrl : bool, type:int)->void:
+	print("%d slot selected %s %s type:%d"%[slot_index, "Shift" if shift else "", "CTRL" if ctrl else "", type])
 	if slot_index >= inventory.order.size():
 		return
 	var item : Item = inventory.order[slot_index]
@@ -74,4 +74,4 @@ func _on_slot_selected(slot_index : int, shift : bool, ctrl : bool)->void:
 		amount = inventory.data[item]
 	if ctrl:
 		amount = ceil(inventory.data[item] / 2.0)
-	UIEventManager.inventory_input.emit(inventory, item,amount)
+	UIEventManager.inventory_input.emit(inventory, item,amount, type)

@@ -2,14 +2,20 @@ class_name Dummy extends CharacterBody2D
 
 @onready var interaction_area : Area2D = %InteractionArea
 @onready var inventory : Inventory = $Inventory
+@onready var tools : Inventory = $Tools
 var external_inventory : Inventory = null
-var inventory_visualizer : Control = null
-var external_inventory_visualizer : Control = null
+var inventory_visualizer : InventoryUI = null
+var external_inventory_visualizer : InventoryUI = null
+var tools_visualizer : InventoryUI = null
 
 var _object_to_interact : Interactable = null
 
 func _ready() -> void:
 	_connect_signals()
+	tools_visualizer = tools.visualize()
+	tools_visualizer.position = get_viewport().size / 2
+	tools_visualizer.position.y = get_viewport().size.y * 0.90
+	HUDManager.add_hud(tools_visualizer)
 
 
 func _physics_process(delta: float) -> void:
@@ -30,6 +36,11 @@ func access_inventory(target_inventory : Inventory)->void:
 	external_inventory = target_inventory
 	_visualize_inventory(true)
 	_visualize_inventory()
+
+func pickup_item(item_type : Item, amount : int)->void:
+	var tools_amount : int = tools.add_item(item_type, amount)
+	if tools_amount <= 0:
+		inventory.add_item(item_type, amount)
 
 func _connect_signals()->void:
 	UIEventManager.inventory_input.connect(_on_ui_inventory_input)
@@ -107,7 +118,7 @@ func _close_inventory_visualization()->void:
 		external_inventory_visualizer = null
 		external_inventory = null
 
-func _on_ui_inventory_input(inv:Inventory, item:Item, amount:int):
+func _on_ui_inventory_input(inv:Inventory, item:Item, amount:int, type:int):
 	if inventory_visualizer and external_inventory_visualizer:
 		if inv == inventory:
 			inventory.get_item(item, amount)
@@ -116,12 +127,21 @@ func _on_ui_inventory_input(inv:Inventory, item:Item, amount:int):
 			external_inventory.get_item(item, amount)
 			inventory.add_item(item, amount)
 	elif inventory_visualizer:
-		if inv != inventory:
-			return
-		inventory.get_item(item, amount)
-		var pickup : ItemPickup = Preloads.SCENE_PICKUP.instantiate()
-		pickup.item_type = item
-		pickup.amount = amount
-		pickup.global_position = global_position
-		get_tree().current_scene.add_child(pickup)
+		match type:
+			0:
+				inv.get_item(item, amount)
+				var pickup : ItemPickup = Preloads.SCENE_PICKUP.instantiate()
+				pickup.item_type = item
+				pickup.amount = amount
+				pickup.global_position = global_position
+				get_tree().current_scene.add_child(pickup)
+			1:
+				if not tools_visualizer:
+					return
+				
+				inv.get_item(item, amount)
+				if inv == inventory:
+					tools.add_item(item, amount)
+				else:
+					inventory.add_item(item, amount)
 		

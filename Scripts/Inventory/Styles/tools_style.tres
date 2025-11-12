@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="InventoryStyle" load_steps=4 format=3 uid="uid://ccgcyqpdsa5vq"]
+
+[ext_resource type="Texture2D" uid="uid://cvk3gbgq8ghpt" path="res://Assets/inventory_simple_backgorund.png" id="1_a7abc"]
+[ext_resource type="Script" uid="uid://bd83660tkbwn8" path="res://Scripts/Inventory/inventory_style.gd" id="2_orcnb"]
+[ext_resource type="Texture2D" uid="uid://vk0ckwqm22bp" path="res://Assets/inventory_simple_slot.png" id="3_2fu6a"]
+
+[resource]
+script = ExtResource("2_orcnb")
+dimensions = Vector2i(9, 1)
+background_texture = ExtResource("1_a7abc")
+slot_texture = ExtResource("3_2fu6a")
+slot_patch_margin = 3
+grid_margin = 3
+background_margin = 5
+alpha = 1.0
+metadata/_custom_type_script = "uid://bd83660tkbwn8"

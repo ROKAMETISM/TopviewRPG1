@@ -35,11 +35,11 @@ func visualize(inventory_to_visualize : Inventory) -> Control:
 	background.position = - background_size / 2
 	background.self_modulate.a = inventory_to_visualize.style.alpha
 	
+	grid.add_theme_constant_override("h_separation", style.grid_margin)
+	grid.add_theme_constant_override("v_separation", style.grid_margin)
 	grid.position = Vector2(style.background_margin, style.background_margin)
 	grid.size = background_size
 	grid.columns = style.dimensions.x
-	grid.add_theme_constant_override("h_separation", style.grid_margin)
-	grid.add_theme_constant_override("v_separation", style.grid_margin)
 	
 	for i in inventory_to_visualize.size:
 		var slot : InventorySlot = INVENTORY_SLOT.instantiate()

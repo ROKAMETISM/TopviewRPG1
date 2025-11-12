@@ -38,6 +38,12 @@ func access_inventory(target_inventory : Inventory)->void:
 	_visualize_inventory()
 
 func pickup_item(item_type : Item, amount : int)->void:
+	if tools.get_item(item_type)>0:
+		tools.add_item(item_type, amount)
+		return
+	if inventory.get_item(item_type) > 0:
+		inventory.add_item(item_type, amount)
+		return
 	var tools_amount : int = tools.add_item(item_type, amount)
 	if tools_amount <= 0:
 		inventory.add_item(item_type, amount)

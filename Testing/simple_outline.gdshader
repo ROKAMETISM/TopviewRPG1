@@ -15,14 +15,14 @@ void vertex()
 			}
 		}
 	}
-bool hasContraryNeighbour(vec2 uv, vec2 texture_pixel_size, sampler2D texture) {
+bool hasContraryNeighbour(vec2 uv, vec2 texture_pixel_size, sampler2D _texture) {
 	for (float x = -1.0; x <=1.0; x++) {
 		float offset;
 		offset = 1.0 - abs(x);
 		for (float y = -ceil(offset); y <= ceil(offset); y++) {
 			vec2 xy = uv + texture_pixel_size * vec2(x, y);
 
-			if (!(xy != clamp(xy, vec2(0.0), vec2(1.0)) || texture(texture, xy).a <= 0.0)) {
+			if (!(xy != clamp(xy, vec2(0.0), vec2(1.0)) || texture(_texture, xy).a <= 0.0)) {
 				return true;
 			}
 		}
@@ -46,7 +46,7 @@ void fragment() {
 		}
 		
 
-		if ((COLOR.a > 0.0) == false && hasContraryNeighbour(uv, TEXTURE_PIXEL_SIZE, TEXTURE)) {
+		if (COLOR.a <= 0.0 && hasContraryNeighbour(uv, TEXTURE_PIXEL_SIZE, TEXTURE)) {
 			COLOR.rgb = color.rgb * modulate.rgb;
 			COLOR.a += (1.0 - COLOR.a) * color.a * modulate.a;
 		}

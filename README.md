@@ -60,6 +60,7 @@ Studying shader is one of the future goals of this project.
 
 ->Interactive world interface -> HP
 
+study shader
 
 "Axe" -> chop tree
 
